@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-paper: #f1f4f2;
+  --color-ink: #0f1b24;
+  --color-mute: #5b6a74;
+  --color-line: #d3dbd7;
+  --color-signal: #1f3dff;
+  --color-ok: #0b8a5f;
+  --color-bad: #c2321f;
+}
+
+@layer base {
+  body { @apply bg-paper text-ink font-sans antialiased; }
+  :focus-visible { outline: 2px solid var(--color-signal); outline-offset: 2px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center rounded-md bg-ink px-3.5 py-2 text-sm font-medium text-paper transition-colors hover:bg-signal disabled:opacity-50; }
+  .btn-ghost { @apply inline-flex items-center justify-center rounded-md border border-line px-3 py-1.5 text-sm transition-colors hover:border-ink; }
+  .input { @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm focus:border-ink; }
+  .label { @apply mb-1 block text-sm font-medium; }
+  /* Red star on any label directly followed by a required field */
+  .label:has(+ :required)::after { content: ' *'; color: var(--color-bad); }
+  .panel { @apply rounded-lg border border-line bg-white; }
+}
